@@ -32,7 +32,7 @@ import { Hind_Siliguri } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/Navbar";
 import PriceTicker from "@/components/PriceTicker";
-// import Footer from "@/components/Footer";
+import Footer from "@/components/Footer";
 import { getCategories, getProducts } from "@/lib/api";
 import "./globals.css";
 
@@ -63,7 +63,7 @@ export default async function RootLayout({
         <Navbar categories={categories} />
         <PriceTicker products={products} />
         <main className="min-h-[60vh]">{children}</main>
-        {/* <Footer /> */}
+        <Footer />
         <Toaster
           position="top-center"
           toastOptions={{
