@@ -31,7 +31,7 @@ import type { Metadata } from "next";
 import { Hind_Siliguri } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/Navbar";
-// import PriceTicker from "@/components/PriceTicker";
+import PriceTicker from "@/components/PriceTicker";
 // import Footer from "@/components/Footer";
 import { getCategories, getProducts } from "@/lib/api";
 import "./globals.css";
@@ -61,7 +61,7 @@ export default async function RootLayout({
     <html lang="bn" data-theme="bazardor" className={hindSiliguri.variable}>
       <body className="font-sans antialiased">
         <Navbar categories={categories} />
-        {/* <PriceTicker products={products} /> */}
+        <PriceTicker products={products} />
         <main className="min-h-[60vh]">{children}</main>
         {/* <Footer /> */}
         <Toaster
