@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useSession } from "@/lib/auth-client";
-// import { useSignOut } from "@/lib/use-sign-out";
+ import { useSignOut } from "@/lib/use-sign-out";
 import type { Category } from "@/lib/types";
 
 function ChevronDownIcon({ className }: { className?: string }) {
@@ -44,7 +44,7 @@ function Avatar({ name, image }: { name?: string | null; image?: string | null }
 
 function UserMenu() {
   const { data: session } = useSession();
-//   const handleSignOut = useSignOut();
+  const handleSignOut = useSignOut();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -100,12 +100,23 @@ function UserMenu() {
             role="menuitem"
             onClick={() => {
               setOpen(false);
-            //   handleSignOut();
+              handleSignOut();
             }}
             className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm font-medium text-error transition hover:bg-error/10"
           >
             ↩ সাইন আউট
           </button>
+          {/* <button
+  type="button"
+  role="menuitem"
+  onClick={async () => {
+    await handleSignOut(); // sign out first
+    setOpen(false);        // then close the menu
+  }}
+  className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm font-medium text-error transition hover:bg-error/10"
+>
+  ↩ সাইন আউট
+</button> */}
         </div>
       )}
     </div>
