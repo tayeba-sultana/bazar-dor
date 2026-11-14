@@ -4,7 +4,7 @@
 
 **Daily prices of everyday essentials in Bangladesh, at a glance.**
 
-
+[Live Demo](https://bazar-dor-one-pink.vercel.app/)
 </div>
 
 ---
