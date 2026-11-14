@@ -1,12 +1,8 @@
-
-
 import Link from "next/link";
-import Image from "next/image";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import SignOutButton from "@/components/SignOutButton";
 import { auth } from "@/lib/auth";
-
 
 export default async function ProfilePage() {
   const session = await auth.api.getSession({ headers: await headers() });
@@ -23,12 +19,12 @@ export default async function ProfilePage() {
 
       <div className="flex flex-col gap-4 rounded-2xl border border-base-300 bg-base-100 p-6 sm:flex-row sm:items-center">
         {user.image ? (
-          
-          <Image
+         
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
             src={user.image}
             alt={user.name}
-            width={80}
-            height={80}
+            referrerPolicy="no-referrer"
             className="h-20 w-20 rounded-2xl object-cover"
           />
         ) : (

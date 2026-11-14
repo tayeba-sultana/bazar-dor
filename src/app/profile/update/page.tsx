@@ -17,6 +17,7 @@ export default function UpdateProfilePage() {
   const [failedUrl, setFailedUrl] = useState<string | null>(null); 
   const [loading, setLoading] = useState(false);
 
+
   const name = edited ?? session?.user?.name ?? "";
   const image = editedImage ?? session?.user?.image ?? "";
   const showPreview = isHttpUrl(image.trim()) && failedUrl !== image.trim();
