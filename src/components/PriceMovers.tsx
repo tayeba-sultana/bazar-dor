@@ -6,11 +6,10 @@ interface Props {
   direction: "up" | "down";
 }
 
-/** Shared "Section / Price Movers" block — top 6 risers or fallers. */
 export default function PriceMovers({ products, direction }: Props) {
   const movers = products
     .filter((p) => p.change.dir === direction)
-    .sort((a, b) => Math.abs(b.change.pct) - Math.abs(a.change.pct)) // biggest move first
+    .sort((a, b) => Math.abs(b.change.pct) - Math.abs(a.change.pct)) 
     .slice(0, 6);
 
   if (movers.length === 0) return null;

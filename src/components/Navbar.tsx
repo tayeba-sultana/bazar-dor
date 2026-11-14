@@ -43,9 +43,6 @@ function Avatar({ name, image }: { name?: string | null; image?: string | null }
   );
 }
 
-// function UserMenu() {
-//   // const { data: session } = useSession();
-//   // const handleSignOut = useSignOut();
 function UserMenu({ user }: { user: SessionUser }) {
   const handleSignOut = useSignOut();
   
@@ -65,8 +62,6 @@ function UserMenu({ user }: { user: SessionUser }) {
     };
   }, []);
 
-  // if (!session) return null;
-  // const { user } = session;
 
   return (
     <div className="relative" ref={ref}>
@@ -102,10 +97,7 @@ function UserMenu({ user }: { user: SessionUser }) {
           <button
             type="button"
             role="menuitem"
-            // onClick={() => {
-            //   setOpen(false);
-            //   handleSignOut();
-            // }}
+            
             onClick={async () => {
   await handleSignOut();
   setOpen(false);
@@ -114,26 +106,13 @@ function UserMenu({ user }: { user: SessionUser }) {
           >
             ↩ সাইন আউট
           </button>
-          {/* <button
-  type="button"
-  role="menuitem"
-  onClick={async () => {
-    await handleSignOut(); // sign out first
-    setOpen(false);        // then close the menu
-  }}
-  className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm font-medium text-error transition hover:bg-error/10"
->
-  ↩ সাইন আউট
-</button> */}
+          
         </div>
       )}
     </div>
   );
 }
 
-// export default function Navbar({ categories }: { categories: Category[] }) {
-//   const { data: session, isPending } = useSession();
-//   const pathname = usePathname();
 export default function Navbar({
   categories,
   initialUser,
@@ -144,7 +123,6 @@ export default function Navbar({
   const { data: session, isPending } = useSession();
   const pathname = usePathname();
 
-  // While the browser check is loading, trust what the server already knew.
   const user: SessionUser | null = isPending ? initialUser : (session?.user ?? null);
 
   return (
@@ -165,11 +143,7 @@ export default function Navbar({
           </Link>
 
           <div className="flex items-center gap-2">
-            {/* {isPending ? (
-              <div className="skeleton h-10 w-28 rounded-lg" aria-label="লোড হচ্ছে" />
-            ) : session ? (
-              <UserMenu />
-            ) : ( */}
+            
             {user ? (
   <UserMenu user={user} />
 ) : (

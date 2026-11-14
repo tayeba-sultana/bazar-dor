@@ -77,7 +77,6 @@ export function getChangeView(change: PriceChange): ChangeView {
   return { text: `— ${toBengaliNumber("0.0")}%`, className: "text-base-content/50" };
 }
 
-/** Builds a PriceChange from two raw prices (used for yesterday / week / month). */
 export function calcChange(today: number, past: number): PriceChange {
   if (!past || today === past) return { dir: "flat", pct: 0 };
   const pct = ((today - past) / past) * 100;

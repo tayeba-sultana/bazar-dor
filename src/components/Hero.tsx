@@ -18,7 +18,7 @@ export default function Hero() {
             চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম — বাজারভিত্তিক বিস্তারিত, গড়,
             সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।
           </p>
-          {/* CTA: same-page anchor, not a route change */}
+          {/* CTA button */}
           <a href="#সব-পণ্য" className="btn btn-primary mt-3 h-10 min-h-10 text-sm font-semibold">
             সব পণ্য দেখুন
           </a>
@@ -32,7 +32,7 @@ export default function Hero() {
             width={315}
             height={263}
             priority
-            className="h-auto w-56 md:w-[315px]"
+            className="h-auto w-56 md:w-78.75"
           />
         </div>
       </div>

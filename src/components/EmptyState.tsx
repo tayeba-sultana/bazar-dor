@@ -6,7 +6,6 @@ interface Props {
   message: string;
 }
 
-/** 404-style message with a "back home" button. */
 export default function EmptyState({ emoji = "🔍", title, message }: Props) {
   return (
     <div className="mx-auto flex min-h-[55vh] w-full max-w-lg flex-col items-center justify-center gap-3 px-4 py-12 text-center">

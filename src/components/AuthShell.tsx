@@ -6,7 +6,6 @@ interface Props {
   children: React.ReactNode;
 }
 
-/** Centered card layout shared by Sign In / Sign Up. */
 export default function AuthShell({ title, subtitle, children }: Props) {
   return (
     <div className="mx-auto flex w-full max-w-md flex-col gap-6 px-4 py-10">

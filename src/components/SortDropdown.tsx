@@ -7,7 +7,6 @@ interface Props {
   onChange: (value: SortKey) => void;
 }
 
-/** C1 — "সাজান" dropdown (the native select shows a chevron icon). */
 export default function SortDropdown({ value, onChange }: Props) {
   return (
     <label className="flex items-center gap-2 text-sm text-base-content/70">

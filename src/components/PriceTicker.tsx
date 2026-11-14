@@ -15,7 +15,6 @@ function TickerItem({ product }: { product: Product }) {
   );
 }
 
-/** Infinite scrolling price strip below the navbar. */
 export default function PriceTicker({ products }: { products: Product[] }) {
   if (products.length === 0) return null;
 
@@ -25,7 +24,7 @@ export default function PriceTicker({ products }: { products: Product[] }) {
       aria-label="আজকের দামের তালিকা"
     >
       <div className="ticker-track" style={{ animationDuration: `${Math.max(products.length * 3, 30)}s` }}>
-        {/* list is rendered twice so the -50% translate loops seamlessly */}
+       
         <div className="flex shrink-0">
           {products.map((p) => (
             <TickerItem key={`a-${p.id}`} product={p} />

@@ -1,4 +1,3 @@
-/** Skeleton loaders (daisyUI `.skeleton`) shared by every loading.tsx */
 
 export function ProductCardSkeleton() {
   return (
@@ -41,7 +40,7 @@ export function HeroSkeleton() {
         <div className="skeleton h-4 w-3/4 max-w-md" />
         <div className="skeleton mt-2 h-10 w-32" />
       </div>
-      <div className="skeleton h-52 w-56 md:w-[315px]" />
+      <div className="skeleton h-52 w-56 md:w-78.75" />
     </div>
   );
 }

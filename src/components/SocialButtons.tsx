@@ -7,14 +7,13 @@ import { GithubIcon, GoogleIcon } from "./Icons";
 
 type Provider = "google" | "github";
 
-/** Google + GitHub login (BetterAuth social providers). */
 export default function SocialButtons({ callbackURL = "/" }: { callbackURL?: string }) {
   const [loading, setLoading] = useState<Provider | null>(null);
 
   const handle = async (provider: Provider) => {
     setLoading(provider);
     const { error } = await signIn.social({ provider, callbackURL });
-    // On success the browser is redirected to the provider, so we only get here on failure.
+    
     if (error) {
       toast.error(error.message || "সোশ্যাল লগইন ব্যর্থ হয়েছে!");
       setLoading(null);

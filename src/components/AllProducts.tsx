@@ -2,7 +2,6 @@ import type { Product } from "@/lib/types";
 import { toBengaliNumber } from "@/lib/utils";
 import ProductGrid from "./ProductGrid";
 
-/** Section C — "সব পণ্য" (target of the hero's #সব-পণ্য anchor) */
 export default function AllProducts({ products }: { products: Product[] }) {
   return (
     <section id="সব-পণ্য" className="flex scroll-mt-40 flex-col gap-3">

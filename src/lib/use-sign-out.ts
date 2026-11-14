@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { signOut } from "@/lib/auth-client";
 
-/** Shared sign-out handler (Navbar + Profile page). */
 export function useSignOut() {
   const router = useRouter();
 

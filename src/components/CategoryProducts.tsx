@@ -10,7 +10,6 @@ type SortKey = "default" | "price-asc" | "price-desc";
 export default function CategoryProducts({ products }: { products: Product[] }) {
   const [sort, setSort] = useState<SortKey>("default");
 
-  // Sort by the NUMERIC price (Bengali digits are parsed first), never by string.
   const sorted = useMemo(() => {
     const list = [...products];
     if (sort === "price-asc") list.sort((a, b) => parseBengaliNumber(a.today) - parseBengaliNumber(b.today));
