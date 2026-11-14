@@ -4,7 +4,6 @@
 
 **Daily prices of everyday essentials in Bangladesh, at a glance.**
 
-[Live Demo]()
 
 </div>
 
