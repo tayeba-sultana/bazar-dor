@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useSession } from "@/lib/auth-client";
  import { useSignOut } from "@/lib/use-sign-out";
 import type { Category } from "@/lib/types";
+type SessionUser = { name: string; email: string; image?: string | null };
 
 function ChevronDownIcon({ className }: { className?: string }) {
   return (
@@ -42,9 +43,12 @@ function Avatar({ name, image }: { name?: string | null; image?: string | null }
   );
 }
 
-function UserMenu() {
-  const { data: session } = useSession();
+// function UserMenu() {
+//   // const { data: session } = useSession();
+//   // const handleSignOut = useSignOut();
+function UserMenu({ user }: { user: SessionUser }) {
   const handleSignOut = useSignOut();
+  
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -61,8 +65,8 @@ function UserMenu() {
     };
   }, []);
 
-  if (!session) return null;
-  const { user } = session;
+  // if (!session) return null;
+  // const { user } = session;
 
   return (
     <div className="relative" ref={ref}>
@@ -98,10 +102,14 @@ function UserMenu() {
           <button
             type="button"
             role="menuitem"
-            onClick={() => {
-              setOpen(false);
-              handleSignOut();
-            }}
+            // onClick={() => {
+            //   setOpen(false);
+            //   handleSignOut();
+            // }}
+            onClick={async () => {
+  await handleSignOut();
+  setOpen(false);
+}}
             className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm font-medium text-error transition hover:bg-error/10"
           >
             ↩ সাইন আউট
@@ -123,9 +131,21 @@ function UserMenu() {
   );
 }
 
-export default function Navbar({ categories }: { categories: Category[] }) {
+// export default function Navbar({ categories }: { categories: Category[] }) {
+//   const { data: session, isPending } = useSession();
+//   const pathname = usePathname();
+export default function Navbar({
+  categories,
+  initialUser,
+}: {
+  categories: Category[];
+  initialUser: SessionUser | null;
+}) {
   const { data: session, isPending } = useSession();
   const pathname = usePathname();
+
+  // While the browser check is loading, trust what the server already knew.
+  const user: SessionUser | null = isPending ? initialUser : (session?.user ?? null);
 
   return (
     <header className="sticky top-0 z-50 border-b border-base-300 bg-base-100/95 backdrop-blur">
@@ -145,11 +165,14 @@ export default function Navbar({ categories }: { categories: Category[] }) {
           </Link>
 
           <div className="flex items-center gap-2">
-            {isPending ? (
+            {/* {isPending ? (
               <div className="skeleton h-10 w-28 rounded-lg" aria-label="লোড হচ্ছে" />
             ) : session ? (
               <UserMenu />
-            ) : (
+            ) : ( */}
+            {user ? (
+  <UserMenu user={user} />
+) : (
               <>
                 <Link href="/signin" className="btn btn-outline btn-sm h-10 min-h-10 border-base-content text-sm font-semibold hover:bg-base-content/10 hover:text-base-content">
                   সাইন ইন

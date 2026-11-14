@@ -3,8 +3,6 @@ import EmptyState from "@/components/EmptyState";
 import { getCategory, getProductsByCategory } from "@/lib/api";
 import { toBengaliNumber } from "@/lib/utils";
 
-//export const dynamic = "force-dynamic";
-
 export default async function CategoryPage({
   params,
 }: {
@@ -13,7 +11,6 @@ export default async function CategoryPage({
   const { slug } = await params;
   const [products, category] = await Promise.all([getProductsByCategory(slug), getCategory(slug)]);
 
-  // Empty state — no products or an invalid slug
   if (products.length === 0) {
     return (
       <EmptyState

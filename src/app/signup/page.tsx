@@ -106,7 +106,7 @@
 "use client";
 
 import { useState } from "react";
-import { signUp, signIn } from "@/lib/auth-client";
+import { signUp, signIn, signOut } from "@/lib/auth-client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -118,25 +118,71 @@ export default function SignUpPage() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleSignUp = async (e: React.FormEvent) => {
+  // const handleSignUp = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+
+  //   const { data, error } = await signUp.email({
+  //     name,
+  //     email,
+  //     password,
+  //   });
+
+  //   // if (error) {
+  //   //   toast.error(error.message || "রেজিস্ট্রেশন ব্যর্থ হয়েছে!");
+  //   //   setLoading(false);
+  //   // } else {
+  //   //   toast.success("রেজিস্ট্রেশন সফল! সাইন ইন পেজে যাচ্ছে...");
+  //   //   router.push("/signin");
+  //   // }
+  //       if (error) {
+  //     toast.error(
+  //       error.code === "USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL"
+  //         ? "এই ইমেইল দিয়ে আগেই অ্যাকাউন্ট খোলা হয়েছে। সাইন ইন করুন বা অন্য ইমেইল দিন।"
+  //         : error.message || "রেজিস্ট্রেশন ব্যর্থ হয়েছে!"
+  //     );
+  //     return;
+  //   }
+
+  //   // Registration auto-signs the user in; the assignment wants them on the login page,
+  //   // so we sign out and send them there.
+  //   await signOut();
+  //   toast.success("অ্যাকাউন্ট তৈরি হয়েছে! এখন সাইন ইন করুন।");
+  //   router.push("/signin");
+  // };
+
+    const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
-    const { data, error } = await signUp.email({
-      name,
-      email,
-      password,
-    });
+    try {
+      const { error } = await signUp.email({
+        name,
+        email,
+        password,
+      });
 
-    if (error) {
-      toast.error(error.message || "রেজিস্ট্রেশন ব্যর্থ হয়েছে!");
-      setLoading(false);
-    } else {
-      toast.success("রেজিস্ট্রেশন সফল! সাইন ইন পেজে যাচ্ছে...");
+      if (error) {
+        toast.error(
+          error.code === "USER_ALREADY_EXISTS" ||
+            error.code === "USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL"
+            ? "এই ইমেইল দিয়ে আগেই অ্যাকাউন্ট খোলা হয়েছে। সাইন ইন করুন বা অন্য ইমেইল দিন।"
+            : error.message || "রেজিস্ট্রেশন ব্যর্থ হয়েছে!"
+        );
+        return;
+      }
+
+      // Registration auto-signs the user in; the assignment wants them on the login page,
+      // so we sign out and send them there.
+      await signOut();
+      toast.success("অ্যাকাউন্ট তৈরি হয়েছে! এখন সাইন ইন করুন।");
       router.push("/signin");
+    } catch {
+      toast.error("কিছু একটা সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+    } finally {
+      setLoading(false); // always runs, so the button can never stay stuck
     }
   };
-
   const handleGoogleSignUp = async () => {
     await signIn.social({
       provider: "google",

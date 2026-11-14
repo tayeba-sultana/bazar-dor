@@ -22,7 +22,11 @@ function unwrap<T>(json: unknown): T {
 async function request<T>(path: string): Promise<T | null> {
   for (const base of BASES) {
     try {
-      const res = await fetch(`${base}${path}`, { next: { revalidate: 60 } });
+      //const res = await fetch(`${base}${path}`, { next: { revalidate: 60 } });
+      const res = await fetch(`${base}${path}`, {
+  next: { revalidate: 60 },
+  signal: AbortSignal.timeout(4000), // give up after 4s and try the next URL
+});
       if (res.status === 404) return null;
       if (!res.ok) continue;
       return unwrap<T>(await res.json());

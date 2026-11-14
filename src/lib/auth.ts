@@ -16,17 +16,24 @@ export const auth = betterAuth({
     emailAndPassword: {
     enabled: true,
     minPasswordLength: 8,
-    // After register we send the user to /signin (assignment requirement)
-    autoSignIn: false,
+  },
+    account: {
+    accountLinking: {
+      enabled: true,
+      trustedProviders: ["github", "google"],
+      updateUserInfoOnLink: true, // refresh name/picture from GitHub/Google
+    },
   },
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      overrideUserInfoOnSignIn: true,
     },
     github: {
       clientId: process.env.GITHUB_CLIENT_ID as string,
       clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+       overrideUserInfoOnSignIn: true,
     },
   },
   

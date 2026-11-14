@@ -35,6 +35,8 @@ import PriceTicker from "@/components/PriceTicker";
 import Footer from "@/components/Footer";
 import { getCategories, getProducts } from "@/lib/api";
 import "./globals.css";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
 
 const hindSiliguri = Hind_Siliguri({
   subsets: ["bengali", "latin"],
@@ -55,12 +57,22 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const [categories, products] = await Promise.all([getCategories(), getProducts()]);
+  // const [categories, products] = await Promise.all([getCategories(), getProducts()]);
+  const [categories, products, session] = await Promise.all([
+  getCategories(),
+  getProducts(),
+  auth.api.getSession({ headers: await headers() }),
+]);
+
+const initialUser = session?.user
+  ? { name: session.user.name, email: session.user.email, image: session.user.image }
+  : null;
 
   return (
     <html lang="bn" data-theme="bazardor" className={hindSiliguri.variable}>
       <body className="font-sans antialiased">
-        <Navbar categories={categories} />
+        {/* <Navbar categories={categories} /> */}
+        <Navbar categories={categories} initialUser={initialUser} />
         <PriceTicker products={products} />
         <main className="min-h-[60vh]">{children}</main>
         <Footer />

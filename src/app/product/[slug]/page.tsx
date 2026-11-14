@@ -10,7 +10,6 @@ import {
   getUnitShortBn,
 } from "@/lib/utils";
 
-// export const dynamic = "force-dynamic"; // protected by src/proxy.ts (login required)
 
 function StatCard({
   label,
@@ -108,7 +107,7 @@ export default async function ProductPage({
           <p className="text-sm text-base-content/70">আজকের দাম</p>
           <p className="text-3xl font-bold">{formatPrice(product.today)}</p>
           <p className="text-sm text-base-content/70">টাকা / {getUnitShortBn(product.unit)}</p>
-          <ChangeBadge change={product.change} className="mt-1 bg-transparent !p-0 text-sm" />
+          <ChangeBadge change={product.change} className="mt-1 bg-transparent p-0! text-sm" />
         </div>
       </header>
 
@@ -146,7 +145,7 @@ export default async function ProductPage({
               <div key={h.label} className="rounded-2xl border border-base-300 bg-base-100 p-4">
                 <p className="text-sm text-base-content/70">{h.label}</p>
                 <p className="text-xl font-bold">{formatPrice(h.price)} টাকা</p>
-                <ChangeBadge change={calcChange(product.today, h.price)} className="mt-1.5 !bg-transparent !p-0" />
+                <ChangeBadge change={calcChange(product.today, h.price)} className="mt-1.5 bg-transparent! p-0!" />
               </div>
             ))}
           </div>
@@ -157,7 +156,7 @@ export default async function ProductPage({
           <h2 className="text-lg font-semibold">বাজারভিত্তিক আজকের দাম</h2>
           {hasMarkets ? (
             <div className="overflow-x-auto rounded-2xl border border-base-300">
-              <table className="w-full min-w-[34rem] text-left text-sm">
+              <table className="w-full min-w-136 text-left text-sm">
                 <thead className="bg-base-200 text-xs font-semibold text-base-content/70">
                   <tr>
                     <th className="px-4 py-3">বাজার</th>
