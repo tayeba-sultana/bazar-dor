@@ -4,7 +4,7 @@
 
 **Daily prices of everyday essentials in Bangladesh, at a glance.**
 
-[Live Demo](https://your-app.vercel.app) · [GitHub Repository](https://github.com/your-username/bazardor)
+[Live Demo](https://your-app.vercel.app)
 
 </div>
 
